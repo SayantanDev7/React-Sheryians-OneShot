@@ -1,6 +1,7 @@
+import { useState } from "react";
 const App = () => {
 
-
+  const [title, setTitle] = useState('');
   return (
     <div>
       <h1>Two Way Binding</h1>
@@ -10,9 +11,11 @@ const App = () => {
 
       <form onSubmit={(e) => {
         e.preventDefault();
-        console.log("Form Submitted");
+        console.log("Form Submitted by ", title);
       }}>
-        <input type="text" placeholder='Enter Your Name' className='bg-slate-200 rounded-full p-2' />
+        <input type="text" placeholder='Enter Your Name' className='bg-slate-200 rounded-full p-2' value={title} onChange={((e) => {
+          setTitle(e.target.value);
+        })} />
         <button type="submit" className="bg-black text-white cursor-pointer rounded-full p-4">Submit</button>
       </form>
     </div>
