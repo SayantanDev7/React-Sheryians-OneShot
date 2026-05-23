@@ -41,7 +41,7 @@ const App = () => {
     const noteWithId = {
       ...newNote,
       id: Date.now() // Simple way to generate a unique ID
-    };
+    }; //adding id to the new note
     // React state is immutable: we create a new array with the new note appended
     setNotes([...notes, noteWithId]);
   };
@@ -53,8 +53,17 @@ const App = () => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+  // --- REACT PRACTICE POINT: UPDATING STATE IMMUTABLY ---
+  // To edit a note, we need to update the parent state in App.jsx.
+  // In React, we never modify the existing state array directly. Instead, we use
+  // `notes.map()`, which creates a brand new array. If the ID of a note matches
+  // the edited note, we swap it with the edited one. Otherwise, we keep the original.
+  const handleEditNote = (updatedNote) => {
+    setNotes(notes.map((note) => (note.id === updatedNote.id ? updatedNote : note)));
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] p-6 md:p-12 relative overflow-hidden flex flex-col items-center">
+    <div className="min-h-screen bg-linear-to-br from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] p-6 md:p-12 relative overflow-hidden flex flex-col items-center">
       {/* Decorative Blur Background Element (looks like the subtle light glow in the screenshot) */}
       <div className="absolute -bottom-36 -right-36 w-80 h-80 bg-blue-200/50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
       
@@ -78,7 +87,11 @@ const App = () => {
           {/* Right Column: Note List (66% width on large screens) */}
           <div className="lg:col-span-8 flex flex-col gap-4">
             <h2 className="text-[#0a2540] text-xl font-bold tracking-wide pl-1">Notes Grid</h2>
-            <NoteList notes={notes} onDeleteNote={handleDeleteNote} />
+            <NoteList 
+              notes={notes} 
+              onDeleteNote={handleDeleteNote} 
+              onEditNote={handleEditNote} 
+            />
           </div>
         </div>
       </div>

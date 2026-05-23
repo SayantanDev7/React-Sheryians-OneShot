@@ -4,7 +4,7 @@ import NoteCard from "./NoteCard";
 // We receive the `notes` array and `onDeleteNote` callback from the parent App.jsx.
 // In React, we use standard Javascript `.map()` to iterate over data arrays 
 // and return JSX elements dynamically.
-const NoteList = ({ notes, onDeleteNote }) => {
+const NoteList = ({ notes, onDeleteNote, onEditNote }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
       {notes.map((note) => (
@@ -16,6 +16,7 @@ const NoteList = ({ notes, onDeleteNote }) => {
           key={note.id} 
           note={note} 
           onDelete={onDeleteNote} 
+          onEdit={onEditNote}
         />
       ))}
     </div>
