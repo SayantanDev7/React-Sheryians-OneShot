@@ -129,7 +129,7 @@ const NoteCard = ({ note, onDelete, onEdit }) => {
             <h4 className="text-[#0a2540] font-bold text-base md:text-lg truncate">
               {note.title}
             </h4>
-            <p className="text-slate-500 text-xs md:text-sm mt-1.5 leading-relaxed break-words whitespace-pre-wrap font-medium">
+            <p className="text-slate-500 text-xs md:text-sm mt-1.5 leading-relaxed wrap-break-word whitespace-pre-wrap font-medium">
               {note.content}
             </p>
           </div>
