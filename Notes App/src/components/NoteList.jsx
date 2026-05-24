@@ -1,7 +1,7 @@
 import NoteCard from "./NoteCard";
 
 // --- REACT PRACTICE POINT: PROPS & DYNAMIC RENDERING ---
-// We receive the `notes` array and `onDeleteNote` callback from the parent App.jsx.
+// We receive the `notes` array and `onDeleteNote` and 'onEditNode' callback from the parent App.jsx.
 // In React, we use standard Javascript `.map()` to iterate over data arrays 
 // and return JSX elements dynamically.
 const NoteList = ({ notes, onDeleteNote, onEditNote }) => {
@@ -23,4 +23,4 @@ const NoteList = ({ notes, onDeleteNote, onEditNote }) => {
   );
 };
 
-export default NoteList;
+export default NoteList;
