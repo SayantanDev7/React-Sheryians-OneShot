@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import Header from "./components/Header";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
@@ -8,32 +8,43 @@ const App = () => {
   // Since both NoteForm (which adds notes) and NoteList (which displays notes) 
   // need access to the same list of notes, we "lift" this state to their closest
   // common parent component, which is App.jsx.
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      title: "Weekly Groceries",
-      type: "Groceries",
-      content: "Remember milk, bread, butter, cheese, apples..."
-    },
-    {
-      id: 2,
-      title: "Ideas Ideas",
-      type: "Ideas",
-      content: "Remember milk, bread, butter, cheese, butter, apples..."
-    },
-    {
-      id: 3,
-      title: "Weekly Groceries",
-      type: "Ideas",
-      content: "Remember milk, bread, butter, cheese, apples..."
-    },
-    {
-      id: 4,
-      title: "Weekly Description",
-      type: "Ideas",
-      content: "Remember milk, bread, butter, cheese, apples..."
-    }
-  ]);
+
+  
+  // --- REACT PRACTICE POINT: LAZY STATE INITIALIZATION ---
+  // Instead of starting with a default state and updating it after mounting (which causes a double render),
+  // we pass an anonymous function to useState. React runs this function ONLY ONCE when the component first loads.
+  // It checks if there are saved notes in localStorage. If yes, it loads them immediately. If not, it uses the default notes.
+  const [notes, setNotes] = useState(() => {
+    const storedNotes = localStorage.getItem('my-notes');
+    //JSON.parse() -> converts JSON string into a JavaScript object
+    //JSON.stringify() -> converts JavaScript object into a JSON string
+    return storedNotes ? JSON.parse(storedNotes) : [
+      {
+        id: 1,
+        title: "Weekly Groceries",
+        type: "Groceries",
+        content: "Remember milk, bread, butter, cheese, apples..."
+      },
+      {
+        id: 2,
+        title: "Ideas Ideas",
+        type: "Ideas",
+        content: "Remember milk, bread, butter, cheese, butter, apples..."
+      },
+      {
+        id: 3,
+        title: "Weekly Groceries",
+        type: "Ideas",
+        content: "Remember milk, bread, butter, cheese, apples..."
+      },
+      {
+        id: 4,
+        title: "Weekly Description",
+        type: "Ideas",
+        content: "Remember milk, bread, butter, cheese, apples..."
+      }
+    ];
+  });
 
   // Handler to add a new note
   // We pass this function down to NoteForm as a prop
@@ -61,6 +72,15 @@ const App = () => {
   const handleEditNote = (updatedNote) => {
     setNotes(notes.map((note) => (note.id === updatedNote.id ? updatedNote : note)));
   };
+
+  // --- REACT PRACTICE POINT: SIDE EFFECTS ---
+  // Every time our 'notes' state array changes, this effect automatically runs 
+  // and backs up the new array to localStorage under the key 'my-notes'.
+  useEffect(() => {
+    localStorage.setItem('my-notes', JSON.stringify(notes));
+    console.log("Notes successfully backed up to storage!");
+  }, [notes]); // dependency array
+
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#f8fafc] via-[#f1f5f9] to-[#e2e8f0] p-6 md:p-12 relative overflow-hidden flex flex-col items-center">

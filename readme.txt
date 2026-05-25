@@ -10,3 +10,20 @@
 8.eslint.config.js file is used to set the rules for the eslint
 eslint is a tool used to find and fix problems in our code
 
+
+UseEffect Working :-
+
+//this will run everytime as no dependency is added
+  useEffect(() =>{
+    console.log("useEffect is running!!");
+  })
+
+  //this will run only once when the component is mounted
+  useEffect(() =>{
+    console.log("useEffect is running!!");
+  },[])
+
+  //this will run only when the component is mounted and when the state is changed
+  useEffect(() =>{
+    console.log("useEffect is running!!");
+  },[state])
