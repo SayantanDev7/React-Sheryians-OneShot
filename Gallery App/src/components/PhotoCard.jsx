@@ -16,7 +16,7 @@ const PhotoCard = ({ title, url, id }) => {
       </div>
 
       {/* Content Container */}
-      <div className="p-4 flex-grow flex flex-col justify-between">
+      <div className="p-4 grow flex flex-col justify-between">
         <p className="text-gray-700 font-medium text-sm capitalize line-clamp-2">
           {title}
         </p>

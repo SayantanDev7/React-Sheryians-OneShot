@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/src/style.css" rel="stylesheet">
+    <!-- 
+      BUG FIXED:
+      - WHERE: Previously, there was a `<link href="/src/style.css" rel="stylesheet">` here.
+      - WHY: There was no `style.css` in the project. The styles are defined in `src/index.css` and imported via Vite in `src/main.jsx`.
+      - HOW FIXED: Removed the dead link to avoid unnecessary 404 network requests in production.
+    -->
     <title>gallery-app</title>
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://kit.fontawesome.com/0ff34dcb50.js" crossorigin="anonymous"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
