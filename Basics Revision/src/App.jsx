@@ -1,18 +1,23 @@
 import React from 'react'
-import Card from "./components/Card"
 import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
-    <>
-    <Navbar />
-    <div style={{ padding: '20px', display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-      <Card title = "Title" description = "Description" username="Alice"/>
-      <Card title = "Title" description = "Description" username="Bob"/>
-      <Card title = "Title" description = "Description" username="Charlie"/>
+    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col font-sans">
+      <Navbar />
+      <main className="grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     </div>
-    
-    </>
   )
 }
 
