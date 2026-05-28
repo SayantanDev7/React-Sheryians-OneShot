@@ -1,6 +1,29 @@
 import React from 'react'
 
+/* 
+  EDUCATIONAL REACT WORKFLOW COMMENTARY:
+  
+  1. WHAT IS A SINGLE PAGE APPLICATION (SPA)?
+     Unlike old-school websites where clicking a link triggers a request to the server, 
+     leading to a full white-screen reload, a React SPA loads the HTML, CSS, and JS once. 
+     React Router intercept links to dynamically swap DOM elements without page reloads, 
+     keeping application state completely intact.
+
+  2. THE WORKFLOW OF CLIENT-SIDE ROUTING:
+     - The browser URL changes when you click a `<Link>` or `<NavLink>`.
+     - The `<BrowserRouter>` hears this change and updates the virtual DOM.
+     - `<Routes>` performs a matching algorithm on current pathname.
+     - The matched `<Route>` element (like this `<About />` component) mounts.
+
+  3. HOW DYNAMIC PARAMETERS WORK:
+     To create a dynamic detail page, you define a route path like `/about/:name` in App.jsx.
+     The colon (`:`) marks `name` as a variable parameter. In the matching child component,
+     you import the `useParams()` hook from 'react-router-dom'.
+     Executing `const { name } = useParams()` extracts the active URL value, allowing 
+     you to query databases, load customized templates, or display personalized elements.
+*/
 const About = () => {
+
   return (
     <div className="min-h-[calc(100vh-68px)] bg-gray-950 text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">

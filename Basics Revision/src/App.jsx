@@ -4,6 +4,9 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import Profile from './pages/Profile'
+import Settings from './pages/Settings'
+import AboutDetail from './pages/AboutDetail'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
@@ -14,7 +17,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about/:name" element={<AboutDetail />} />
+          <Route path="/contact" element={<Contact />}>
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

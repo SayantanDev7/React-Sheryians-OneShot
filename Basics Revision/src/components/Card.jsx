@@ -1,6 +1,22 @@
 import React from 'react';
 
+/* 
+  EDUCATIONAL REACT WORKFLOW COMMENTARY:
+  
+  1. DESTUCTURING VS DIRECT PROPS OBJECT:
+     Here, the component is defined as `const Card = (props) => { ... }`.
+     Inside, we reference properties using `props.username`, `props.title`, etc.
+     Alternatively, you can write: `const Card = ({ username, title, description }) => { ... }`
+     which allows you to use `username`, `title`, and `description` directly as local variables.
+     This process is called JavaScript destructuring and is heavily used in React codebases.
+
+  2. DYNAMIC CONTENT EXPRESSIONS:
+     In JSX, any valid JavaScript expression must be wrapped in curly braces `{}`.
+     Here, `{props.username ? props.username.charAt(0) : '?'}` dynamically calculates 
+     and displays the first letter of the user's name as an avatar initial!
+*/
 const Card = (props) => {
+
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:border-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex flex-col h-full w-full max-w-sm">
       <div className="flex items-center gap-4 mb-4">

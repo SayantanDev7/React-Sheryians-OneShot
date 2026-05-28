@@ -1,7 +1,27 @@
 import React from 'react'
 import Card from '../components/Card'
 
+/* 
+  EDUCATIONAL REACT WORKFLOW COMMENTARY:
+  
+  1. COMPONENT REUSABILITY:
+     In React, we build small, self-contained building blocks called "components" (like the `<Card />` imported above).
+     Instead of copying and pasting the exact same HTML block three times, we write a single `<Card />` component 
+     and reuse it. This follows the DRY (Don't Repeat Yourself) principle.
+
+  2. PROPS (PROPERTIES):
+     Props are the primary mechanism for passing data from a parent component (Home) down to a child component (Card).
+     Props are read-only (immutable) parameters. Here, we pass `username`, `title`, and `description` to each `<Card />`.
+     Inside `Card.jsx`, React gathers these inputs into a single object, allowing the child to customize its content 
+     dynamically!
+
+  3. VIRTUAL DOM & RENDERING:
+     When this component executes, it returns JSX (JavaScript XML), which React compiles into virtual DOM elements.
+     If a prop updates, React recalculates the virtual DOM, finds the exact diff, and applies it efficiently to 
+     the actual browser DOM.
+*/
 const Home = () => {
+
   return (
     <div className="min-h-[calc(100vh-68px)] bg-gray-950 text-gray-100 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
