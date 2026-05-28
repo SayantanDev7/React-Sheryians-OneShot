@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;500&display=swap");
+
+/* 
+  SCOPED VARIABLES TO AVOID POLLUTING THE GLOBAL BODY STYLES
+  We use the wrapper class instead of :root or body, which keeps the rest of the site's dark layout intact!
+*/
+.not-found-page-wrapper {
+	--primary-color: #faca2e;
+	--eye-pupil-color: #050505;
+	--bg-color: #fff;
+	--text-color: #000;
+	--fs-heading: 36px;
+	--fs-text: 26px;
+	--fs-button: 18px;
+	--fs-icon: 30px;
+	--pupil-size: 30px;
+	--eye-size: 80px;
+	--button-padding: 15px 30px;
+
+	display: flex;
+	min-height: calc(100vh - 72px); /* Adjust to fit below the navigation bar */
+	width: 100%;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: "Fira Sans", sans-serif;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.4s ease, color 0.4s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Local Dark Theme CSS Variable Overrides */
+.not-found-page-wrapper.dark {
+	--bg-color: #050505;
+	--text-color: #fff;
+	--eye-pupil-color: #fff; /* Make pupil stand out in dark mode */
+}
+
+@media only screen and (max-width: 567px) {
+	.not-found-page-wrapper {
+		--fs-heading: 30px;
+		--fs-text: 22px;
+		--fs-button: 16px;
+		--fs-icon: 24px;
+		--button-padding: 12px 24px;
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 30px;
+	text-align: center;
+	z-index: 10;
+}
+
+.error-page {
+	margin: auto;
+}
+
+.error-page__heading-title {
+	text-transform: capitalize;
+	font-size: var(--fs-heading);
+	font-weight: 500;
+	color: var(--primary-color);
+}
+
+.error-page__heading-desciption {
+	margin-top: 10px;
+	font-size: var(--fs-text);
+	font-weight: 200;
+}
+
+.error-page__button {
+	color: inherit;
+	text-decoration: none;
+	border: 1px solid var(--primary-color);
+	font-size: var(--fs-button);
+	font-weight: 200;
+	padding: var(--button-padding);
+	border-radius: 15px;
+	box-shadow: 0px 7px 0px -2px var(--primary-color);
+	transition: all 0.3s ease-in-out;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+.error-page__button:hover {
+	box-shadow: none;
+	background-color: var(--primary-color);
+	color: #fff;
+}
+
+.eyes {
+	display: flex;
+	justify-content: center;
+	gap: 20px; /* Gives the eyes a natural human spacing */
+	margin-bottom: 10px;
+}
+
+.eye {
+	width: var(--eye-size);
+	height: var(--eye-size);
+	background-color: var(--primary-color);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.eye__pupil {
+	width: var(--pupil-size);
+	height: var(--pupil-size);
+	background-color: var(--eye-pupil-color);
+	border-radius: 50%;
+	transition: transform 0.1s ease-out; /* Smooths out mouse-tracking adjustments */
+	transform-origin: center center;
+}
+
+.color-switcher {
+	position: absolute;
+	top: 40px;
+	right: 40px;
+	background-color: transparent;
+	font-size: var(--fs-icon);
+	cursor: pointer;
+	color: var(--primary-color);
+	border: 0;
+	z-index: 100;
+	transition: transform 0.2s ease;
+	outline: none;
+}
+
+.color-switcher:hover {
+	transform: scale(1.15);
+}
